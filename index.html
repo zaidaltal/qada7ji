@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qada7ji — Lighters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Aref+Ruqaa:wght@700&family=Pirata+One&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b0a0a; --ink-2:#151313; --ink-3:#1f1b1b;
+  --bone:#ece4d2; --bone-dim:#a49b8a;
+  --blood:#c3161c; --blood-dk:#7d0d11;
+  --rose:#c96a86;
+  --line:rgba(236,228,210,.14);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--ink);color:var(--bone);font-family:"Space Mono",monospace;font-size:15px;line-height:1.55;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;background:var(--grain);pointer-events:none;z-index:100;mix-blend-mode:overlay}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.ar{font-family:"Aref Ruqaa",serif}
+.label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--bone-dim)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(11,10,10,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:38px;height:38px;border-radius:50%;filter:grayscale(1) contrast(1.2);border:1px solid var(--line)}
+.brand b{font-family:"Pirata One";font-size:28px;font-weight:400;letter-spacing:.02em}
+.links{display:flex;gap:22px;margin-left:auto;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.links a{text-decoration:none;color:var(--bone-dim)}
+.links a:hover{color:var(--bone)}
+.cart-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--bone);padding:8px 14px;font-size:12px;letter-spacing:.15em;text-transform:uppercase}
+.cart-btn:hover{background:var(--bone);color:var(--ink)}
+.cart-btn span{background:var(--blood);color:#fff;min-width:20px;height:20px;border-radius:10px;display:grid;place-items:center;font-size:11px}
+@media(max-width:760px){.links{display:none}.cart-btn{margin-left:auto}}
+
+/* hero */
+.hero{position:relative;min-height:calc(100vh - 64px);display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding:48px 16px 80px}
+.hero h1{font-family:"Anton";font-weight:400;font-size:clamp(56px,9vw,128px);line-height:.88;text-transform:uppercase;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--blood);font-family:"Pirata One";font-size:1.12em;letter-spacing:0;text-transform:none}
+.hero .ar{font-size:clamp(28px,4vw,44px);color:var(--rose);margin:18px 0 6px;direction:rtl;text-align:left}
+.hero p.lede{max-width:440px;color:var(--bone-dim);margin:14px 0 30px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid var(--bone);transition:.15s}
+.btn.red{background:var(--blood);border-color:var(--blood);color:#fff}
+.btn.red:hover{background:var(--blood-dk);border-color:var(--blood-dk)}
+.btn.ghost:hover{background:var(--bone);color:var(--ink)}
+.hero-art{position:relative;aspect-ratio:4/5}
+.hero-art img{position:absolute;object-fit:cover;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.hero-art .a{inset:0 18% 14% 0;width:82%;height:86%;filter:contrast(1.1) saturate(.85);transform:rotate(-2deg);border:8px solid var(--bone)}
+.hero-art .b{width:48%;height:44%;right:0;bottom:0;transform:rotate(4deg);border:6px solid var(--bone);filter:grayscale(.3)}
+.stamp{position:absolute;top:6%;right:2%;width:120px;height:120px;border-radius:50%;background:var(--blood);color:#fff;display:grid;place-items:center;text-align:center;font-family:"Anton";font-size:18px;line-height:1.05;text-transform:uppercase;transform:rotate(12deg);box-shadow:0 0 0 4px var(--ink),0 0 0 6px var(--blood)}
+@media(max-width:860px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:32px}.hero-art{max-width:420px;width:100%;margin:0 auto}}
+
+/* marquee */
+.marquee{background:var(--blood);color:#fff;overflow:hidden;border-block:2px solid var(--ink);transform:rotate(-1.2deg);margin:0 -20px;position:relative;z-index:2}
+.marquee div{display:flex;gap:36px;white-space:nowrap;padding:12px 0;font-family:"Anton";font-size:22px;text-transform:uppercase;letter-spacing:.04em;animation:mq 28s linear infinite;width:max-content}
+.marquee i{font-style:normal;opacity:.6}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee div{animation:none}}
+
+/* sections */
+section{padding:96px 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:36px;flex-wrap:wrap}
+.sec-head h2{font-family:"Anton";font-weight:400;font-size:clamp(40px,6vw,72px);line-height:.9;text-transform:uppercase}
+.sec-head h2 small{display:block;font-family:"Space Mono";font-size:12px;letter-spacing:.25em;color:var(--blood);margin-bottom:12px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);padding:8px 14px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--bone-dim)}
+.filters button.on,.filters button:hover{border-color:var(--bone);color:var(--bone)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px}
+.card{position:relative;background:var(--ink-2);border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+.card .ph{position:relative;aspect-ratio:1;overflow:hidden;background:#000}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s;filter:saturate(.9)}
+.card:hover .ph img{transform:scale(1.06);filter:saturate(1.1)}
+.tag{position:absolute;top:12px;left:12px;background:var(--ink);color:var(--bone);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:5px 8px;border:1px solid var(--line)}
+.tag.hot{background:var(--blood);border-color:var(--blood);color:#fff}
+.card .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-family:"Anton";font-weight:400;font-size:24px;text-transform:uppercase;line-height:1.05}
+.card .desc{font-size:12.5px;color:var(--bone-dim);flex:1}
+.card .row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.price{font-family:"Anton";font-size:22px}
+.price small{font-family:"Space Mono";font-size:11px;color:var(--bone-dim);margin-left:4px}
+.add{border:1px solid var(--bone);padding:9px 14px;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.add:hover{background:var(--blood);border-color:var(--blood);color:#fff}
+
+/* builder */
+.builder{background:var(--ink-2);border-block:1px solid var(--line);position:relative}
+.builder::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 25% 50%,rgba(195,22,28,.16),transparent 70%);pointer-events:none}
+.b-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative}
+@media(max-width:860px){.b-grid{grid-template-columns:1fr;gap:32px}}
+.stage{aspect-ratio:1;display:grid;place-items:center;background:
+  repeating-linear-gradient(45deg,rgba(236,228,210,.03) 0 2px,transparent 2px 14px),var(--ink);border:1px solid var(--line);position:relative}
+.stage .label{position:absolute;top:14px;left:16px}
+/* the drawn lighter */
+.lighter{position:relative;width:110px;height:280px;transform:rotate(-8deg);transition:.3s}
+.lighter .cap{position:absolute;top:0;left:22px;width:66px;height:44px;background:linear-gradient(90deg,#8d8d8d,#e8e8e8 40%,#9a9a9a 70%,#cfcfcf);border-radius:4px 4px 0 0}
+.lighter .cap::after{content:"";position:absolute;right:-14px;top:12px;width:22px;height:20px;background:#d01b22;border-radius:4px}
+.lighter .sleeve{position:absolute;top:36px;left:0;right:0;bottom:0;border-radius:18px 18px 22px 22px;overflow:hidden;box-shadow:inset -14px 0 24px rgba(0,0,0,.45),inset 10px 0 18px rgba(255,255,255,.08),0 24px 40px rgba(0,0,0,.6);transition:background .3s}
+.lighter .sleeve::before{content:"";position:absolute;inset:6px;border:2px dashed rgba(255,255,255,.35);border-radius:14px}
+.lighter .eng{position:absolute;inset:0;display:grid;place-items:center;writing-mode:vertical-rl;transform:rotate(180deg);font-family:"Pirata One";font-size:30px;color:rgba(255,255,255,.85);text-shadow:0 1px 0 rgba(0,0,0,.6);letter-spacing:.04em;padding:16px 0;overflow:hidden;white-space:nowrap}
+.lighter .ring{position:absolute;top:24px;right:-30px;width:38px;height:38px;border:5px solid #c9c9c9;border-radius:50%;display:none}
+.lighter.clip .ring{display:block}
+.lighter.zippo{width:150px;height:220px}
+.lighter.zippo .cap{left:0;width:100%;height:62px;background:linear-gradient(90deg,#141414,#3a3a3a 40%,#121212);border-radius:8px 8px 0 0;border-bottom:2px solid #000}
+.lighter.zippo .cap::after{display:none}
+.lighter.zippo .sleeve{top:64px;border-radius:0 0 10px 10px}
+.lighter.zippo .sleeve::before{display:none}
+.lighter.zippo .eng{writing-mode:horizontal-tb;transform:none;font-size:26px;color:#d9d9d9;text-align:center;white-space:normal;line-height:1}
+
+.opts{display:flex;flex-direction:column;gap:26px}
+.opt h4{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:10px;font-weight:400}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1px solid var(--line);padding:9px 12px;font-size:12px;display:flex;align-items:center;gap:8px}
+.chips button i{width:16px;height:16px;border-radius:50%;display:inline-block;border:1px solid rgba(255,255,255,.3)}
+.chips button.on{border-color:var(--blood);background:rgba(195,22,28,.14)}
+.opts input[type=text]{width:100%;background:var(--ink);border:1px solid var(--line);color:var(--bone);font:inherit;padding:12px 14px;letter-spacing:.06em}
+.opts input[type=text]:focus{outline:none;border-color:var(--blood)}
+.total{display:flex;align-items:center;justify-content:space-between;border-top:1px dashed var(--line);padding-top:20px;gap:12px;flex-wrap:wrap}
+.total .price{font-size:40px}
+
+/* lore */
+.lore{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+@media(max-width:860px){.lore{grid-template-columns:1fr}}
+.lore .ph{position:relative}
+.lore .ph img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:contrast(1.1)}
+.lore .ph::after{content:"";position:absolute;inset:-12px 12px 12px -12px;border:1px solid var(--blood);z-index:-1}
+.lore h2{font-family:"Anton";font-weight:400;font-size:clamp(40px,6vw,68px);line-height:.92;text-transform:uppercase;margin:12px 0 20px}
+.lore h2 span{color:var(--blood)}
+.lore p{color:var(--bone-dim);margin-bottom:14px;max-width:520px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px}
+.facts div{background:var(--ink);padding:18px}
+.facts b{display:block;font-family:"Anton";font-size:32px;font-weight:400}
+.facts span{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--bone-dim)}
+
+/* gallery strip */
+.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.strip a{position:relative;aspect-ratio:1;overflow:hidden;display:block}
+.strip img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);transition:.3s}
+.strip a:hover img{filter:none;transform:scale(1.05)}
+@media(max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}}
+
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+.f-grid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:end}
+.f-grid .big{font-family:"Pirata One";font-size:clamp(56px,10vw,120px);line-height:.8}
+.f-grid .big .ar{font-size:.5em;color:var(--rose);display:block;margin-top:14px}
+.f-grid ul{list-style:none;font-size:13px;color:var(--bone-dim);display:grid;gap:6px}
+.proto{margin-top:36px;font-size:11px;color:var(--bone-dim);opacity:.7}
+
+/* cart drawer */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.25s;z-index:60}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:var(--ink-2);border-left:1px solid var(--line);transform:translateX(100%);transition:.3s;z-index:61;display:flex;flex-direction:column}
+.open .scrim{opacity:1;pointer-events:auto}
+.open .drawer{transform:none}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--line)}
+.drawer header h3{font-family:"Anton";font-weight:400;font-size:28px;text-transform:uppercase}
+.items{flex:1;overflow:auto;padding:8px 20px}
+.item{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px dashed var(--line)}
+.item img,.item .sw{width:64px;height:64px;object-fit:cover}
+.item .sw{display:grid;place-items:center;font-family:"Pirata One";font-size:22px}
+.item b{display:block;font-weight:700;font-size:13px}
+.item small{color:var(--bone-dim);font-size:11px;display:block}
+.qty{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:12px}
+.qty button{width:22px;height:22px;border:1px solid var(--line)}
+.empty{color:var(--bone-dim);text-align:center;padding:60px 0}
+.drawer footer{padding:20px;border-top:1px solid var(--line)}
+.drawer footer .row{display:flex;justify-content:space-between;margin-bottom:14px;font-family:"Anton";font-size:22px}
+.drawer footer .btn{width:100%;justify-content:center}
+.drawer footer p{font-size:11px;color:var(--bone-dim);margin-top:10px;text-align:center}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--bone);color:var(--ink);padding:12px 18px;font-size:13px;z-index:70;transition:.3s;font-weight:700;opacity:0;visibility:hidden}
+.toast.show{transform:translate(-50%,0);opacity:1;visibility:visible}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/logo.jpg" alt=""><b>Qada7ji</b></a>
+    <div class="links">
+      <a href="#shop">Shop</a><a href="#build">Build yours</a><a href="#lore">Find us</a>
+    </div>
+    <button class="cart-btn" id="cartBtn">Cart <span id="count">0</span></button>
+  </div>
+</nav>
+
+<header class="wrap hero" id="top">
+  <div>
+    <div class="label">Handmade in Amman · Est. on Instagram</div>
+    <div class="ar">قدحجي</div>
+    <h1>Makes your<br>life <em>lighter</em></h1>
+    <p class="lede">Ripped-denim sleeves, cowhide keychains and engraved metal for people who'd rather light up a mosh pit than a birthday candle.</p>
+    <div class="cta">
+      <a class="btn red" href="#shop">Shop the drop →</a>
+      <a class="btn ghost" href="#build">Build your own</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <img class="a" src="img/engraved-hexagram.jpg" alt="Black engraved lighter with occult hexagram pattern">
+    <img class="b" src="img/sleeve-grey-red-denim.jpg" alt="Grey ripped denim lighter sleeve with red stitching">
+    <div class="stamp">Custom<br>made<br>to order</div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div id="mq"></div></div>
+
+<section id="shop">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2><small>// The stash</small>Lighters &amp;<br>sleeves</h2>
+      <div class="filters" id="filters">
+        <button class="on" data-f="all">All</button>
+        <button data-f="sleeve">Keychain sleeves</button>
+        <button data-f="engraved">Engraved</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="builder" id="build">
+  <div class="wrap b-grid">
+    <div class="stage">
+      <div class="label">Live preview</div>
+      <div class="lighter clip" id="lighter">
+        <div class="cap"></div>
+        <div class="sleeve" id="sleeve"><div class="eng" id="eng">qada7ji</div></div>
+        <div class="ring"></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-head" style="margin-bottom:24px"><h2><small>// Build yours</small>Customize<br>your lighter</h2></div>
+      <div class="opts">
+        <div class="opt"><h4>01 — Base</h4><div class="chips" id="optBase"></div></div>
+        <div class="opt" id="matWrap"><h4>02 — Material</h4><div class="chips" id="optMat"></div></div>
+        <div class="opt"><h4>03 — Engraving / stitch text <span style="opacity:.6">(max 14)</span></h4>
+          <input type="text" id="optText" maxlength="14" value="qada7ji" placeholder="Band name, initials, a curse…">
+        </div>
+        <div class="opt" id="clipWrap"><h4>04 — Hardware</h4><div class="chips" id="optClip"></div></div>
+        <div class="total">
+          <div><div class="label">Your build</div><div class="price" id="bPrice">—</div></div>
+          <button class="btn red" id="bAdd">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lore">
+  <div class="wrap lore">
+    <div class="ph"><img src="img/stall.jpg" alt="Qada7ji stall with wooden shelves of lighters and a black tablecloth with the cat logo"></div>
+    <div>
+      <div class="label">// IRL</div>
+      <h2>Catch us at <span>Rock n Retro</span></h2>
+      <p>Qada7ji products now live on the shelves at Rock n Retro — come grab a tee, and get <b style="color:var(--bone)">50% off any lighter</b> when you buy in-store.</p>
+      <p>We also pop up at markets and gigs with the full table. Follow the stories for where we'll be next — and DM us if you want something nobody else has.</p>
+      <div class="facts">
+        <div><b>2.3K</b><span>Followers</span></div>
+        <div><b>100%</b><span>Handmade</span></div>
+        <div><b>1 of 1</b><span>Every sleeve</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip" id="strip"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="big">Qada7ji<span class="ar">احنا قدحجي واحد بالأردن</span></div>
+      <ul>
+        <li><a href="https://www.instagram.com/qada7ji.jo/" target="_blank" rel="noopener">@qada7ji.jo</a></li>
+        <li>Amman, Jordan</li>
+        <li>Orders via Instagram DM</li>
+        <li>Delivery all over Jordan</li>
+      </ul>
+    </div>
+    <p class="proto">Prototype — prices, delivery info and stats are placeholders until confirmed with the shop.</p>
+  </div>
+</footer>
+
+<div id="cartUI">
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" aria-label="Cart">
+    <header><h3>Your cart</h3><button id="closeCart" aria-label="Close">✕</button></header>
+    <div class="items" id="items"></div>
+    <footer>
+      <div class="row"><span>Total</span><span id="total">0 JD</span></div>
+      <button class="btn red" id="checkout">Order via Instagram DM</button>
+      <p>Copies your order, then opens a DM with @qada7ji.jo — just paste &amp; send.</p>
+    </footer>
+  </aside>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PRODUCTS = [
+  {id:'hex', cat:'engraved', name:'HIM Lighter', desc:'Matte black flip-top, laser-etched occult hexagram. Made for HIM fans.', price:18, img:'img/engraved-hexagram.jpg', tag:'Bestseller', hot:true},
+  {id:'marl', cat:'engraved', name:'Niche Marlboro Lighter', desc:'Leopard-print Marlboro parody engraving. "You\'re going to die anyway."', price:18, img:'img/marlboro.jpg', tag:'Niche'},
+  {id:'cow', cat:'sleeve', name:'Real Cow Leather Keychain Lighter', desc:'Genuine cow leather sleeve, zig-zag stitched, with swivel clip.', price:9, img:'img/sleeve-cowhide.jpg', tag:'Leather'},
+  {id:'gr', cat:'sleeve', name:'Gray & Red Denim Keychain Lighter', desc:'Shredded grey denim, red-stitched edges, original woven label.', price:7, img:'img/sleeve-grey-red-denim.jpg', tag:'1 of 1'},
+  {id:'bw', cat:'sleeve', name:'Black & White Denim Keychain Lighter', desc:'Black denim ripped open to a white under-layer. Key ring included.', price:7, img:'img/sleeve-bw-denim.jpg'},
+  {id:'blu', cat:'sleeve', name:'Normal Denim Keychain Lighter', desc:'Faded blue jeans, hand-stitched in gold thread. The OG.', price:6, img:'img/sleeve-denim.jpg'},
+  {id:'bur', cat:'sleeve', name:'Keychain Lighter', desc:'Wine-red distressed knit with scratch stitching and a lobster clip.', price:7, img:'img/sleeve-burgundy.jpg', tag:'New', hot:true},
+];
+
+const BASES = [
+  {id:'sleeve', name:'Sleeve + lighter', price:6},
+  {id:'zippo', name:'Engraved flip-top', price:16},
+];
+const MATS = [
+  {id:'denim', name:'Blue denim', bg:'repeating-linear-gradient(60deg,#4f6f95 0 2px,#6d8cb2 2px 4px)', add:0},
+  {id:'black', name:'Black denim', bg:'repeating-linear-gradient(60deg,#1b1b1d 0 2px,#2c2c30 2px 4px)', add:0},
+  {id:'grey', name:'Grey + red', bg:'repeating-linear-gradient(60deg,#4a4a4d 0 2px,#5f5f63 2px 4px)', add:1},
+  {id:'wine', name:'Burgundy', bg:'repeating-linear-gradient(60deg,#6a0f22 0 2px,#82172f 2px 4px)', add:1},
+  {id:'cow', name:'Cowhide', bg:'radial-gradient(circle at 30% 30%,#efe3cf 0 18%,transparent 19%),radial-gradient(circle at 70% 70%,#efe3cf 0 14%,transparent 15%),#5a3420', add:3},
+];
+const CLIPS = [{id:'clip', name:'Key clip', add:1},{id:'none', name:'No clip', add:0}];
+
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem('q7_cart')) || []; } catch(e) {}
+const save = () => { try { localStorage.setItem('q7_cart', JSON.stringify(cart)); } catch(e) {} };
+const $ = s => document.querySelector(s);
+
+/* marquee */
+const words = ['Handmade in Amman','Ripped denim','Real cowhide','Engraved to order','Rock n Retro','DM to order','قدحجي'];
+$('#mq').innerHTML = [...words,...words,...words,...words].map(w=>`<span>${w}</span><i>✦</i>`).join('');
+
+/* shop */
+function renderGrid(f='all'){
+  $('#grid').innerHTML = PRODUCTS.filter(p=>f==='all'||p.cat===f).map(p=>`
+    <article class="card">
+      <div class="ph"><img src="${p.img}" alt="${p.name}" loading="lazy">${p.tag?`<span class="tag ${p.hot?'hot':''}">${p.tag}</span>`:''}</div>
+      <div class="body">
+        <h3>${p.name}</h3><p class="desc">${p.desc}</p>
+        <div class="row"><span class="price">${p.price}<small>JD</small></span><button class="add" data-id="${p.id}">Add +</button></div>
+      </div>
+    </article>`).join('');
+}
+renderGrid();
+$('#filters').onclick = e => {
+  const b = e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
+  renderGrid(b.dataset.f);
+};
+$('#grid').onclick = e => {
+  const b = e.target.closest('.add'); if(!b) return;
+  const p = PRODUCTS.find(x=>x.id===b.dataset.id);
+  addToCart({key:p.id, name:p.name, sub:p.cat==='sleeve'?'Keychain sleeve':'Engraved lighter', price:p.price, img:p.img});
+};
+
+/* builder */
+const build = {base:'sleeve', mat:'denim', clip:'clip', text:'qada7ji'};
+function chips(el, list, key, extra){
+  el.innerHTML = list.map(o=>`<button data-v="${o.id}" class="${build[key]===o.id?'on':''}">${o.bg?`<i style="background:${o.bg}"></i>`:''}${o.name}${extra(o)}</button>`).join('');
+  el.onclick = e => { const b=e.target.closest('button'); if(!b) return; build[key]=b.dataset.v; renderBuilder(); };
+}
+function priceOf(){
+  const base = BASES.find(b=>b.id===build.base).price;
+  if (build.base==='zippo') return base + (build.text.trim()?2:0);
+  return base + MATS.find(m=>m.id===build.mat).add + CLIPS.find(c=>c.id===build.clip).add + (build.text.trim()?1:0);
+}
+function renderBuilder(){
+  chips($('#optBase'), BASES, 'base', o=>` <span style="opacity:.55">${o.price} JD</span>`);
+  chips($('#optMat'), MATS, 'mat', o=>o.add?` <span style="opacity:.55">+${o.add}</span>`:'');
+  chips($('#optClip'), CLIPS, 'clip', o=>o.add?` <span style="opacity:.55">+${o.add}</span>`:'');
+  const z = build.base==='zippo';
+  $('#matWrap').style.display = z?'none':'';
+  $('#clipWrap').style.display = z?'none':'';
+  const L = $('#lighter');
+  L.classList.toggle('zippo', z);
+  L.classList.toggle('clip', !z && build.clip==='clip');
+  $('#sleeve').style.background = z ? 'linear-gradient(90deg,#0d0d0d,#2a2a2a 40%,#0e0e0e)' : MATS.find(m=>m.id===build.mat).bg;
+  $('#eng').textContent = build.text || '';
+  $('#bPrice').textContent = priceOf() + ' JD';
+}
+$('#optText').oninput = e => { build.text = e.target.value; renderBuilder(); };
+$('#bAdd').onclick = () => {
+  const z = build.base==='zippo';
+  const mat = MATS.find(m=>m.id===build.mat);
+  addToCart({
+    key:'custom-'+Date.now(), name:'Custom '+(z?'flip-top':'sleeve'),
+    sub:(z?'Engraved':'%m · %c'.replace('%m',mat.name).replace('%c',build.clip==='clip'?'clip':'no clip'))+(build.text.trim()?` · "${build.text.trim()}"`:''),
+    price:priceOf(), swatch: z?'linear-gradient(90deg,#0d0d0d,#2a2a2a)':mat.bg
+  });
+};
+renderBuilder();
+
+/* cart */
+function addToCart(item){
+  const ex = cart.find(c=>c.key===item.key);
+  ex ? ex.qty++ : cart.push({...item, qty:1});
+  save(); renderCart(); toast(`${item.name} added`);
+}
+function renderCart(){
+  const n = cart.reduce((a,c)=>a+c.qty,0);
+  $('#count').textContent = n;
+  $('#total').textContent = cart.reduce((a,c)=>a+c.qty*c.price,0) + ' JD';
+  $('#items').innerHTML = cart.length ? cart.map((c,i)=>`
+    <div class="item">
+      ${c.img?`<img src="${c.img}" alt="">`:`<div class="sw" style="background:${c.swatch}">Q</div>`}
+      <div><b>${c.name}</b><small>${c.sub}</small>
+        <div class="qty"><button data-i="${i}" data-d="-1">−</button>${c.qty}<button data-i="${i}" data-d="1">+</button></div></div>
+      <div class="price" style="font-size:18px">${c.price*c.qty} JD</div>
+    </div>`).join('') : '<div class="empty">Nothing here yet.<br>Go light something up.</div>';
+}
+$('#items').onclick = e => {
+  const b = e.target.closest('button[data-i]'); if(!b) return;
+  const c = cart[b.dataset.i]; c.qty += +b.dataset.d;
+  if (c.qty<=0) cart.splice(b.dataset.i,1);
+  save(); renderCart();
+};
+const setOpen = o => document.getElementById('cartUI').classList.toggle('open', o);
+$('#cartBtn').onclick = () => setOpen(true);
+$('#closeCart').onclick = $('#scrim').onclick = () => setOpen(false);
+$('#checkout').onclick = async () => {
+  if (!cart.length) return toast('Cart is empty');
+  const msg = 'Hey Qada7ji! I want to order:\n' + cart.map(c=>`- ${c.qty}x ${c.name} (${c.sub}) — ${c.price*c.qty} JD`).join('\n') + `\nTotal: ${cart.reduce((a,c)=>a+c.qty*c.price,0)} JD`;
+  try { await navigator.clipboard.writeText(msg); toast('Order copied — paste it in the DM'); } catch(e) { toast('Opening DM…'); }
+  setTimeout(()=>window.open('https://ig.me/m/qada7ji.jo','_blank'), 700);
+};
+renderCart();
+
+let tt; function toast(t){ const el=$('#toast'); el.textContent=t; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),1800); }
+
+/* insta strip */
+$('#strip').innerHTML = ['engraved-hexagram-reel','sleeve-cowhide','marlboro','sleeve-burgundy','stall','sleeve-bw-denim']
+  .map(s=>`<a href="https://www.instagram.com/qada7ji.jo/" target="_blank" rel="noopener"><img src="img/${s}.jpg" alt="" loading="lazy"></a>`).join('');
+</script>
+</body>
+</html>
